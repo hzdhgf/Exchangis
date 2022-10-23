@@ -32,7 +32,7 @@ $\color{#FF0000}{注意：一定要使用最新版的dss1.1.0，及linkis1.1.1}$
 
 datasource启用
 
-linkis的启动脚本中默认不会启动数据源相关的服务两个服务（ps-data-source-manager，ps-metadatamanager）， 如果想使用数据源服务，可以通过如下方式进行开启: 修改$LINKIS_CONF_DIR/linkis-env.sh中的 export ENABLE_METADATA_MANAGER=true值为true。 通过linkis-start-all.sh/linkis-stop-all.sh 进行服务启停时，会进行数据源服务的启动与停止。关于数据源更多详情可参考[数据源功能使用](https://linkis.apache.org/zh-CN/docs/1.1.0/deployment/start_metadatasource) 
+linkis的启动脚本中默认不会启动数据源相关的服务两个服务（ps-data-source-manager，ps-metadatamanager）， 如果想使用数据源服务，可以通过如下方式进行开启: 修改$LINKIS_CONF_DIR/linkis-env.sh中的 export ENABLE_METADATA_MANAGER=true值为true。 通过linkis-start-all.sh/linkis-stop-all.sh 进行服务启停时，会进行数据源服务的启动与停止。关于数据源更多详情可参考[数据源功能使用](https://linkis.apache.org/zh-CN/docs/latest/deployment/start-metadatasource) 
 
 #### 1.2 创建 Linux 用户
 
