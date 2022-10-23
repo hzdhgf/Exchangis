@@ -21,7 +21,8 @@ import org.apache.linkis.datasource.client.request.MetadataGetTablePropsAction;
 import org.apache.linkis.datasource.client.response.MetadataGetColumnsResult;
 import org.apache.linkis.datasource.client.response.MetadataGetPartitionsResult;
 import org.apache.linkis.datasource.client.response.MetadataGetTablePropsResult;
-import org.apache.linkis.metadatamanager.common.domain.MetaColumnInfo;
+// import org.apache.linkis.metadatamanager.common.domain.MetaColumnInfo;
+import org.apache.linkis.metadata.query.common.domain.MetaColumnInfo;
 
 import java.util.*;
 
@@ -73,15 +74,22 @@ public class LinkisMetadataInfoService extends LinkisDataSourceServiceRpcDispatc
     @SuppressWarnings("unchecked")
     public Map<String, String> getTableProps(ServiceRpcClient<?> rpcClient, String userName, Long dataSourceId, String database, String table) throws ExchangisDataSourceException {
         MetadataGetTablePropsResult result = dispatch((ServiceRpcClient<LinkisMetaDataRemoteClient>) rpcClient, new LinkisDataSourceServiceOperation(() -> MetadataGetTablePropsAction.builder()
-                .setDataSourceId(dataSourceId).setDatabase(database).setTable(table)
-                .setUser(userName).setSystem(LINKIS_RPC_CLIENT_SYSTEM.getValue()).build()), CLIENT_METADATA_GET_TABLES_ERROR.getCode(), "getTableProps");
+//                 .setDataSourceId(dataSourceId)
+                .setDataSourceName(String.valueOf(dataSourceId))
+                .setDatabase(database)
+                .setTable(table)
+                .setUser(userName)
+                .setSystem(LINKIS_RPC_CLIENT_SYSTEM.getValue()).build()), CLIENT_METADATA_GET_TABLES_ERROR.getCode(), "getTableProps");
         return result.props();
 }
 
     @Override
     public List<String> getPartitionKeys(String userName, Long dataSourceId, String database, String table) throws ExchangisDataSourceException {
         MetadataGetPartitionsResult result = dispatch(getDefaultRemoteClient(), new LinkisDataSourceServiceOperation(() -> MetadataGetPartitionsAction.builder()
-                .setDataSourceId(dataSourceId).setDatabase(database).setTable(table)
+//                 .setDataSourceId(dataSourceId)
+                .setDataSourceName(String.valueOf(dataSourceId))
+                .setDatabase(database)
+                .setTable(table)
                 .setUser(userName).setSystem(LINKIS_RPC_CLIENT_SYSTEM.getValue()).build()), CLIENT_METADATA_GET_PARTITION.getCode(), "getPartitionKeys");
         return result.getPartitionInfo().getPartKeys();
     }
@@ -90,7 +98,10 @@ public class LinkisMetadataInfoService extends LinkisDataSourceServiceRpcDispatc
     public List<MetaColumn> getColumns(String userName, Long dataSourceId, String database, String table) throws ExchangisDataSourceException {
         MetadataGetColumnsResult result = dispatch(getDefaultRemoteClient(), new LinkisDataSourceServiceOperation(() -> MetadataGetColumnsAction.builder()
                 .setSystem(LINKIS_RPC_CLIENT_SYSTEM.getValue())
-                .setDataSourceId(dataSourceId).setDatabase(database).setTable(table)
+//                 .setDataSourceId(dataSourceId)
+                .setDataSourceName(String.valueOf(dataSourceId))
+                .setDatabase(database)
+                .setTable(table)
                 .setUser(userName).build()),CLIENT_METADATA_GET_PARTITION.getCode(), "getColumns");
         List<MetaColumnInfo> columnInfoList = result.getAllColumns();
         List<MetaColumn> columns = new ArrayList<>();
