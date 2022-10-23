@@ -190,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `exchangis_job_func_params`(
 )Engine=InnoDB DEFAULT CHARSET=utf8;
 
 -- exchangis_engine_resources definition
-DROP TABLE IF EXISTS `exchangis_engine_resources`
+DROP TABLE IF EXISTS `exchangis_engine_resources`;
 CREATE TABLE `exchangis_engine_resources` (
    `id` bigint(20) NOT NULL AUTO_INCREMENT,
    `engine_type` varchar(50) NOT NULL,
