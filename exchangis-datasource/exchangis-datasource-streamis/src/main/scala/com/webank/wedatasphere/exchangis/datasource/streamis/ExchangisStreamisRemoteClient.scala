@@ -141,7 +141,8 @@ object ExchangisStreamisRemoteClient {
   def queryDataBasesByCuster(system: String, dataSourceId: Long, user: String): MetadataGetDatabasesResult = {
     metaDataClient.getDatabases(MetadataGetDatabasesAction.builder()
       .setSystem(system)
-      .setDataSourceId(dataSourceId)
+//       .setDataSourceId(dataSourceId)
+      .setDataSourceName(String.valueOf(dataSourceId))
       .setUser(user)
       .build()
     )
@@ -150,7 +151,8 @@ object ExchangisStreamisRemoteClient {
   def queryTablesByDataBase(system: String, dataSourceId: Long, dataBase: String, user: String): MetadataGetTablesResult = {
     metaDataClient.getTables(MetadataGetTablesAction.builder()
       .setSystem(system)
-      .setDataSourceId(dataSourceId)
+//       .setDataSourceId(dataSourceId)
+      .setDataSourceName(String.valueOf(dataSourceId))
       .setDatabase(dataBase)
       .setUser(user)
       .build()
@@ -160,7 +162,8 @@ object ExchangisStreamisRemoteClient {
   def queryColumnsByTable(system: String, dataSourceId: Long, dataBase: String, table: String, user: String): MetadataGetColumnsResult = {
     metaDataClient.getColumns(MetadataGetColumnsAction.builder()
       .setSystem(system)
-      .setDataSourceId(dataSourceId)
+//       .setDataSourceId(dataSourceId)
+      .setDataSourceName(String.valueOf(dataSourceId))
       .setDatabase(dataBase)
       .setTable(table)
       .setUser(user)
